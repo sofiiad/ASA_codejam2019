@@ -78,10 +78,10 @@
       }
 
       .column3 {
-      float: left;
-      width: 33.33%;
-      padding: 5px;
-    }
+        float: left;
+        width: 33.33%;
+        padding: 5px;
+      }
 
       /* Create two unequal columns that sits next to each other */
       /* Sidebar/left column */
@@ -295,8 +295,7 @@
   <body>
     <!-- Header. -->
     <div class="header">
-      <h1>ASA</h1>
-      <p>We <b>see</b> you.</p>
+      <img src="ASAlogo.png" />
     </div>
 
     <!-- Navigation bar. -->
@@ -321,9 +320,9 @@
           <button class="button" type="submit" id="snap">Take picture</button>
         </center>
         <br />
-    </div>
+      </div>
 
-        <div class="side">
+      <div class="side">
         <div class="container">
           <label for="uname"><b>Username</b></label>
           <input
@@ -375,7 +374,6 @@
           document.getElementById("snap").addEventListener("click", function() {
             context.drawImage(camElement, 0, 0, 200, 150);
           });
-
         </script>
       </div>
     </div>
