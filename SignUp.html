@@ -164,14 +164,14 @@
 
       #camcontainer {
         margin: 0px auto;
-        width: 300px;
-        height: 250px;
+        width: 200px;
+        height: 150px;
         border: 5px #333 solid;
       }
 
       #camElement {
-        width: 300px;
-        height: 250px;
+        width: 200px;
+        height: 150px;
         background-color: #666;
       }
 
@@ -303,7 +303,7 @@
     <div class="navbar">
       <a href="MainPage.html">Home</a>
       <a href="SignUp.html" class="active">Sign Up</a>
-      <a href="#" class="right">Contact us</a>
+      <a href="ContactPage.html" class="right">Contact Us</a>
     </div>
 
     <!-- Main page content. -->
@@ -313,7 +313,7 @@
           <div class="camcontainer">
             <video autoplay="true" id="camElement"></video>
           </div>
-          <canvas id="canvas" width="300" height="250"></canvas>
+          <canvas id="canvas" width="200" height="150"></canvas>
         </center>
         <br />
 
@@ -321,7 +321,9 @@
           <button class="button" type="submit" id="snap">Take picture</button>
         </center>
         <br />
+    </div>
 
+        <div class="side">
         <div class="container">
           <label for="uname"><b>Username</b></label>
           <input
@@ -371,7 +373,7 @@
 
           // Trigger photo take
           document.getElementById("snap").addEventListener("click", function() {
-            context.drawImage(camElement, 0, 0, 300, 250);
+            context.drawImage(camElement, 0, 0, 200, 150);
           });
 
         </script>
