@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Head of webpage -->
+  <head>
+    <title>Main Page</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Useful style properties that will be used for webpage layout -->
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      /* Style the body */
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+      }
+
+      /* Header/logo Title */
+      .header {
+        padding: 80px;
+        text-align: center;
+        background: #e9d758;
+        color: black;
+      }
+
+      /* Increase the font size of the heading */
+      .header h1 {
+        font-size: 40px;
+      }
+
+      /* Sticky navbar - toggles between relative and fixed, depending on the scroll position. It is positioned relative until a given offset position is met in the viewport - then it "sticks" in place (like position:fixed). The sticky value is not supported in IE or Edge 15 and earlier versions. However, for these versions the navbar will inherit default position */
+      .navbar {
+        overflow: hidden;
+        background-color: #160c28;
+        position: sticky;
+        position: -webkit-sticky;
+        top: 0;
+      }
+
+      /* Style the navigation bar links */
+      .navbar a {
+        float: left;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 20px;
+        text-decoration: none;
+      }
+
+      /* Right-aligned link */
+      .navbar a.right {
+        float: right;
+      }
+
+      /* Change color on hover */
+      .navbar a:hover {
+        background-color: #ddd;
+        color: rgb(85, 71, 85);
+      }
+
+      /* Active/current link */
+      .navbar a.active {
+        background-color: rgb(117, 98, 117);
+        color: white;
+      }
+
+      /* Column container */
+      .row {
+        display: -ms-flexbox;
+        /* IE10 */
+        display: flex;
+        -ms-flex-wrap: wrap;
+        /* IE10 */
+        flex-wrap: wrap;
+      }
+
+      /* Create two unequal columns that sits next to each other */
+      /* Sidebar/left column */
+      .side {
+        -ms-flex: 30%;
+        /* IE10 */
+        flex: 30%;
+        background-color: white;
+        padding: 20px;
+      }
+
+      /* Main column */
+      .main {
+        -ms-flex: 70%;
+        /* IE10 */
+        flex: 70%;
+        background-color: white;
+        padding: 20px;
+      }
+
+      /* Footer */
+      .footer {
+        padding: 20px;
+        text-align: center;
+        background: rgb(36, 0, 66);
+      }
+
+      .button {
+        background-color: #e9d758;
+        border: thick;
+        border-color: rgb(0, 0, 0);
+        color: black;
+        padding: 15px 25px;
+        text-align: center;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      .button:hover {
+        background-color: #fff275;
+      }
+
+      /*Cancel button */
+      .cancelbtn {
+        background-color: #f74a3e;
+        border: thick;
+        border-color: rgb(0, 0, 0);
+        color: white;
+        text-align: center;
+        font-size: 16px;
+        cursor: pointer;
+        width: auto;
+        padding: 10px 18px;
+      }
+
+      .cancelbtn:hover {
+        background-color: #c00f03;
+      }
+
+      /* Center the image and position the close button */
+      .imgcontainer {
+        text-align: center;
+        margin: 24px 0 12px 0;
+        position: relative;
+      }
+
+      img.avatar {
+        width: 15%;
+        border-radius: 50%;
+      }
+
+      .container {
+        padding: 16px;
+      }
+
+      span.psw {
+        float: right;
+        padding-top: 16px;
+      }
+
+      #camcontainer {
+        margin: 0px auto;
+        width: 300px;
+        height: 250px;
+        border: 5px #333 solid;
+      }
+
+      #camElement {
+        width: 300px;
+        height: 250px;
+        background-color: #666;
+      }
+
+      /* The Modal (background) */
+      .modal {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Stay in place */
+        z-index: 1;
+        /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        overflow: auto;
+        /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0);
+        /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4);
+        /* Black w/ opacity */
+        padding-top: 60px;
+      }
+
+      /* Modal Content/Box */
+      .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto 15% auto;
+        /* 5% from the top, 15% from the bottom and centered */
+        border: 1px solid #888;
+        width: 80%;
+        /* Could be more or less, depending on screen size */
+      }
+
+      /* The Close Button (x) */
+      .close {
+        position: absolute;
+        right: 25px;
+        top: 0;
+        color: #000;
+        font-size: 35px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: red;
+        cursor: pointer;
+      }
+
+      /* Add Zoom Animation */
+      .animate {
+        -webkit-animation: animatezoom 0.6s;
+        animation: animatezoom 0.6s;
+      }
+
+      @-webkit-keyframes animatezoom {
+        from {
+          -webkit-transform: scale(0);
+        }
+
+        to {
+          -webkit-transform: scale(1);
+        }
+      }
+
+      @keyframes animatezoom {
+        from {
+          transform: scale(0);
+        }
+
+        to {
+          transform: scale(1);
+        }
+      }
+
+      /* Full-width input fields */
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+      }
+
+      /* Change styles for span and cancel button on extra small screens */
+      @media screen and (max-width: 300px) {
+        span.psw {
+          display: block;
+          float: none;
+        }
+
+        .cancelbtn {
+          width: 100%;
+        }
+      }
+
+      /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+      @media screen and (max-width: 700px) {
+        .row {
+          flex-direction: column;
+        }
+      }
+
+      /* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+      @media screen and (max-width: 400px) {
+        .navbar a {
+          float: none;
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+
+  <!-- Body of website. -->
+
+  <body>
+    <!-- Header. -->
+    <div class="header">
+      <h1>ASA</h1>
+      <p>We <b>see</b> you.</p>
+    </div>
+
+    <!-- Navigation bar. -->
+    <div class="navbar">
+      <a href="index">Home</a>
+      <a href="SignUp">Sign Up</a>
+      <a href="#" class="right" class="active">Contact Us</a>
+    </div>
+
+    <!-- Main page content. -->
+    <div class="row">
+      <div class="side">
+            <center>
+                    <h1>ASA Headquarters</h1>
+                    <p> Lorne M. Trottier Building <br>
+                      Room 5105<br>
+                      3630 University St<br>
+                      Montreal, Quebec<br>
+                      H3A 0C6<br>
+                      <br>
+                      <b>Email</b>: asa@outlook.com<br>
+                      <b>Tel</b>: 514-363-5105<br>
+                      <b>Fax</b> 514-636-5015
+                      <br>
+                    </p>
+                    <h3>Opening Hours</h3>
+                    <p> Mon-Fri: 9 AM - 7 PM <br>
+                      Sat: 10 AM - 5 PM<br>
+                      Sun: Closed<br>
+                    </p>
+            
+                    <!-- Include google maps image of Trottier building -->
+                    <!--<h3>Google Maps</h3>-->
+                    <div><!--<img src="Headquarters.png" height=100% width=100% style="object-fit: contain;">--></div>
+            
+                </div>
+                </center>
+
+        <script>
+          
+        </script>
+      </div>
+    </div>
+
+  </body>
+</html>
