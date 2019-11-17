@@ -324,65 +324,13 @@
 
         <!-- Button to log into account -->
         <center>
-          <button
-            class="button"
-            onclick="document.getElementById('id01').style.display='block'"
-            style="width:300px;"
-          >
-            Already have an account? <br /><b>Log in here!</b>
-          </button>
+          <a href="{{url_for('Log')}}">
+            <button class="button" style="width:300px">
+              Already have an account?<br />
+              <b>Login here!</b>
+            </button>
+          </a>
         </center>
-
-        <!-- ****************************************************************************
-        ********************************* LOGIN POP UP ********************************
-        ******************************************************************************* -->
-        <div id="id01" class="modal">
-          <form
-            class="modal-content animate"
-            action="/action_page.php"
-            method="post"
-          >
-            <div class="imgcontainer">
-              <span
-                onclick="document.getElementById('id01').style.display='none'"
-                class="close"
-                title="Close Login"
-                >&times;</span
-              >
-
-              <center>
-                <label for="Login picture"><b>Smile!</b></label>
-              </center>
-              <br />
-              <div class="camcontainer">
-                <video autoplay="true" id="camElement"></video>
-              </div>
-              <canvas id="canvas" width="200" height="150"></canvas>
-              <br />
-              <center>
-                <p>
-                  When you're ready, take the picture and log in by pressing the
-                  <i>Log in</i> button.
-                </p>
-              </center>
-            </div>
-
-            <div class="container">
-              <center>
-                <button class="button" type="submit" id = "logSub">Login</button>
-              </center>
-            </div>
-
-            <div class="container" style="background-color: whitesmoke">
-              <button
-                type="button"
-                onclick="document.getElementById('id01').style.display='none'"
-                class="cancelbtn"
-              >
-                Cancel
-              </button>
-            </div>
-          </form>
         </div>
 
         <!-- ****************************************************************************
@@ -477,28 +425,45 @@
           };
 
           //Access webcam
-          var video = document.querySelector("#camElement");
+          var video = document.getElementById("#camElement");
 
-          if (navigator.mediaDevices.getUserMedia) {
+          if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
             navigator.mediaDevices
               .getUserMedia({ video: true })
               .then(function(stream) {
                 video.srcObject = stream;
+                video.play();
               })
               .catch(function(err0r) {
                 console.log("Something went wrong!");
               });
           }
+
+          // Elements for taking the snapshot
           var canvas = document.getElementById("canvas");
           var context = canvas.getContext("2d");
           var video = document.getElementById("camElement");
+
+          // Trigger photo take
           document.getElementById("logSub").addEventListener("click", function() {
             context.drawImage(camElement, 0, 0, 200, 150);
-            img = canvas.toDataURL('image/jpeg');
-            let xhr = new XMLHttpRequest();
-            xhr.open("POST", "http://localhost:5000/");
-            xhr.send([img]);
           });
+          var canvas = document.getElementById("canvas");
+          var context = canvas.getContext("2d");
+          var video = document.getElementById("camElement");
+
+          /*document.getElementById("logSub").addEventListener("click", function() {
+            context.drawImage(camElement, 0, 0, 200, 150);
+            img = canvas.toDataURL('image/jpeg');
+            var data = nenw FormData();
+            data.append('log_im',img);
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function(){
+              window.location.href = "http://localhost:5000/WelcomePage";
+            }
+            xhr.open("POST", "http://localhost:5000/action_page.php");
+            xhr.send(data);
+          });*/
         </script>
       </div>
     </div>

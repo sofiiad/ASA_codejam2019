@@ -325,22 +325,24 @@
 
         <div class="side">
         <div class="container">
-          <label for="uname" id = "uname"><b>Username</b></label>
+          <label for="uname"><b>Username</b></label>
           <input
             type="text"
             placeholder="Enter Username"
             name="uname"
+            id = "uname"
             required
           />
 
-          <label for="email" id = "email"><b>Email</b></label>
-          <input type="text" placeholder="Enter Email" name="email" required />
+          <label for="email"><b>Email</b></label>
+          <input type="text" placeholder="Enter Email" name="email" id = "email" required />
 
-          <label for="psw" id = "psw"><b>Password</b></label>
+          <label for="psw"><b>Password</b></label>
           <input
             type="password"
             placeholder="Enter Password"
             name="psw"
+            id = "psw"
             optional
           />
 
@@ -377,14 +379,47 @@
           });
 
           document.getElementById("sign_up").addEventListener("click",function(){
-            var sgnImages = [];
-            for(var i = 0; i < 10; i++){
-              context.drawImage(camElement, 0, 0, 200, 150);
-              sgnImages.push(canvas.toDataURL('image/jpeg'));
-            }
-            sgnImages.push(document.getElementById("uname").textContent);
-            sgnImages.push(document.getElementById("email").textContent);
-            sgnImages.push(document.getElementById("psw").textContent);
+            // var sgnImages = [];
+            // for(var i = 0; i < 10; i++){
+            //   context.drawImage(camElement, 0, 0, 200, 150);
+            //   sgnImages.push(canvas.toDataURL('image/jpeg'));
+            // }
+            //sgnImages.push(document.getElementById("uname").textContent);
+            //sgnImages.push(document.getElementById("email").textContent);
+            //sgnImages.push(document.getElementById("psw").textContent);
+            var data = new FormData();
+            context.drawImage(camElement, 0, 0, 200, 150);
+            data.append('im1',canvas.toDataURL('image/jpeg'));
+
+            context.drawImage(camElement, 0, 0, 200, 150);
+            data.append('im2',canvas.toDataURL('image/jpeg'));
+
+            context.drawImage(camElement, 0, 0, 200, 150);
+            data.append('im3',canvas.toDataURL('image/jpeg'));
+
+            context.drawImage(camElement, 0, 0, 200, 150);
+            data.append('im4',canvas.toDataURL('image/jpeg'));
+
+            context.drawImage(camElement, 0, 0, 200, 150);
+            data.append('im5',canvas.toDataURL('image/jpeg'));
+
+            context.drawImage(camElement, 0, 0, 200, 150);
+            data.append('im6',canvas.toDataURL('image/jpeg'));
+
+            context.drawImage(camElement, 0, 0, 200, 150);
+            data.append('im7',canvas.toDataURL('image/jpeg'));
+
+            context.drawImage(camElement, 0, 0, 200, 150);
+            data.append('im8',canvas.toDataURL('image/jpeg'));
+
+            context.drawImage(camElement, 0, 0, 200, 150);
+            data.append('im9',canvas.toDataURL('image/jpeg'));
+
+            context.drawImage(camElement, 0, 0, 200, 150);
+            data.append('ima',canvas.toDataURL('image/jpeg'));
+
+            data.append('usrname',document.getElementById('uname').value);
+            data.append('email',document.getElementById('email').value);
             let xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function(){
               window.location.href = "http://localhost:5000/index";
@@ -393,7 +428,7 @@
               // }
             }
             xhr.open("POST", "http://localhost:5000/SignUp",false);
-            xhr.send([sgnImages]);
+            xhr.send(data);
           });
 
         </script>

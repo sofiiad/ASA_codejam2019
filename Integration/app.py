@@ -7,6 +7,11 @@ Created on Sat Nov 16 17:56:23 2019
 
 #import os
 from flask import Flask, render_template, request, url_for, redirect
+import base64
+from PIL import Image
+from io import BytesIO
+import facedetect
+import recog
 
 
 app = Flask(__name__)
@@ -38,11 +43,25 @@ def MainPage():
 @app.route('/SignUp',methods=['GET','POST'])
 def SignUp():
     if request.method == 'POST':
+        facedetect.signUp(request)
         return render_template('index.html')#Changed this
     return render_template('SignUp.html')
 @app.route('/ContactPage.html',methods = ['GET'])
 def ContactPage():
     return render_template('ContactPage.html')
+
+@app.route('/WelcomePage',methods = ['GET'])
+def WelcomePage():
+    return render_template('WelcomePage.html')
+
+
+@app.route('/Log',methods = ['GET','POST'])
+def Log():
+    if request.method == 'POST':
+        resp = recog.detect(request)
+        print(resp)
+        return render_template('WelcomePage.html',response = resp[0])
+    return render_template('Login.html')
 
 #@app.route('/cyberfooter.jpg',methods = ['GET'])
 #def cyberfooter():
